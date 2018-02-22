@@ -1,23 +1,59 @@
 package com.wikia.qdoc.services.qdoc.flow;
 
+import com.wikia.qdoc.services.qdoc.flow.qdocnumber.QDocNumber;
+import com.wikia.qdoc.services.qdoc.flow.qdocnumber.QDocNumberGeneratorPolicy;
 import com.wikia.qdoc.shared.DepartmentId;
 import com.wikia.qdoc.shared.QManagerId;
 import com.wikia.qdoc.shared.QdocId;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
-public interface QdocFlowService {
+public class QdocFlowService {
 
-  void create(String qdocType, QdocId qdocId);
+  private final CurrentUserProvider currentUserProvider;
+  private final QDocNumberGeneratorPolicy numberGenerator;
+  private final QDocRepo qDocRepo;
 
-  void sendForVerification(QdocId qdocId, QManagerId verifier) throws IllegalStatusChange;
+  public QdocFlowService(
+      CurrentUserProvider currentUserProvider,
+      QDocNumberGeneratorPolicy numberGenerator,
+      QDocRepo qDocRepo
+  ) {
+    this.currentUserProvider = currentUserProvider;
+    this.numberGenerator = numberGenerator;
+    this.qDocRepo = qDocRepo;
+  }
 
-  void markAsVerified(QdocId qdocId) throws IllegalStatusChange;
+  void create(String qdocType, QdocId qdocId) {
+    QManagerId author = currentUserProvider.getQManagerId();
+    LocalDateTime createdAt = LocalDateTime.now();
+    QDocNumber documentNr = numberGenerator.generate(qdocType, createdAt);
 
-  void publish(QdocId qdocId, Set<DepartmentId> receivingDepartments) throws IllegalStatusChange;
+    QDocument qDocument = new QDocument(
+        author,
+        qdocType,
+        createdAt,
+        documentNr
+    );
 
-  void archive(QdocId qdocId) throws IllegalStatusChange;
+    qDocRepo.save(qDocument);
+  }
+
+  void sendForVerification(QdocId qdocId, QManagerId verifier) throws IllegalStatusChange {
+  }
+
+  void markAsVerified(QdocId qdocId) throws IllegalStatusChange {
+  }
+
+  void publish(QdocId qdocId, Set<DepartmentId> receivingDepartments) throws IllegalStatusChange {
+  }
+
+  void archive(QdocId qdocId) throws IllegalStatusChange {
+  }
 
 
-  class IllegalStatusChange extends Exception {}
+  class IllegalStatusChange extends Exception {
+
+  }
 }
