@@ -7,7 +7,7 @@ public class DummyCurrentUserProvider implements CurrentUserProvider {
 
   @Override
   public QManagerId getQManagerId() {
-    return null;
+    return new QManagerId();
   }
 
   @Override

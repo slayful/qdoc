@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     compile group: 'io.dropwizard', name: 'dropwizard-core', version: '1.2.4'
+    compile group: 'org.projectlombok', name: 'lombok-maven', version: '1.16.20.0', ext: 'pom'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.15.0'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.9.0'

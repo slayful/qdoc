@@ -45,6 +45,7 @@ public class QdocFlowService {
   }
 
   void markAsVerified(QdocId qdocId) throws IllegalStatusChange {
+
   }
 
   void publish(QdocId qdocId, Set<DepartmentId> receivingDepartments) throws IllegalStatusChange {
@@ -55,6 +56,18 @@ public class QdocFlowService {
 
 
   class IllegalStatusChange extends Exception {
+
+    private IllegalStatusChange(String message) {
+      super(message);
+    }
+
+    IllegalStatusChange success() {
+      return new IllegalStatusChange("success");
+    }
+
+    IllegalStatusChange fail() {
+      return new IllegalStatusChange("fail");
+    }
 
   }
 }
