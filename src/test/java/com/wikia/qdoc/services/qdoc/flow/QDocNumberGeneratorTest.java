@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.wikia.qdoc.services.qdoc.flow.infrastructure.PropertySystemConfig;
 import com.wikia.qdoc.services.qdoc.flow.domain.ports.CurrentUserProvider;
-import com.wikia.qdoc.services.qdoc.flow.domain.SystemConfig;
 import com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumberGeneratorPolicyProvider;
 
 import org.junit.Before;
@@ -27,7 +27,7 @@ public class QDocNumberGeneratorTest {
   public void basicNumber() {
     when(mock.isAuditor()).thenReturn(false);
     QDocNumberGeneratorPolicyProvider provider = new QDocNumberGeneratorPolicyProvider(
-        new SystemConfig(false),
+        new PropertySystemConfig(false),
         mock
     );
 
@@ -41,7 +41,7 @@ public class QDocNumberGeneratorTest {
   public void basicNumberForAuditor() {
     when(mock.isAuditor()).thenReturn(true);
     QDocNumberGeneratorPolicyProvider provider = new QDocNumberGeneratorPolicyProvider(
-        new SystemConfig(false),
+        new PropertySystemConfig(false),
         mock
     );
 
@@ -55,7 +55,7 @@ public class QDocNumberGeneratorTest {
   public void basicNumberForDemo() {
     when(mock.isAuditor()).thenReturn(false);
     QDocNumberGeneratorPolicyProvider provider = new QDocNumberGeneratorPolicyProvider(
-        new SystemConfig(true),
+        new PropertySystemConfig(true),
         mock
     );
 
@@ -69,7 +69,7 @@ public class QDocNumberGeneratorTest {
   public void basicNumberForDemoAudit() {
     when(mock.isAuditor()).thenReturn(true);
     QDocNumberGeneratorPolicyProvider provider = new QDocNumberGeneratorPolicyProvider(
-        new SystemConfig(true),
+        new PropertySystemConfig(true),
         mock
     );
 
