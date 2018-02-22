@@ -1,12 +1,13 @@
-package com.wikia.qdoc.services.qdoc.flow.qdocnumber;
+package com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber;
 
-import com.wikia.qdoc.services.qdoc.flow.CurrentUserProvider;
+import com.wikia.qdoc.services.qdoc.flow.domain.ports.CurrentUserProvider;
 
 import java.time.LocalDateTime;
 
 public class QDocNumberGeneratorAuditorDecoratorPolicy implements QDocNumberGeneratorPolicy {
 
-  private final QDocNumberGeneratorPolicy policy;
+  private final QDocNumberGeneratorPolicy
+      policy;
   private final CurrentUserProvider currentUserProvider;
 
   public QDocNumberGeneratorAuditorDecoratorPolicy(
@@ -18,8 +19,10 @@ public class QDocNumberGeneratorAuditorDecoratorPolicy implements QDocNumberGene
   }
 
   @Override
-  public QDocNumber generate(LocalDateTime createdAt) {
-    QDocNumber qDocNumber = policy.generate(createdAt);
+  public com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumber generate(
+      LocalDateTime createdAt) {
+    com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumber
+        qDocNumber = policy.generate(createdAt);
     if (currentUserProvider.isAuditor()) {
       return qDocNumber.withSuffix("AUDIT");
     }

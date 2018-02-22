@@ -1,7 +1,8 @@
-package com.wikia.qdoc.services.qdoc.flow.qdocnumber;
+package com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber;
 
-import com.wikia.qdoc.services.qdoc.flow.CurrentUserProvider;
-import com.wikia.qdoc.services.qdoc.flow.SystemConfig;
+import com.wikia.qdoc.services.qdoc.flow.domain.ports.CurrentUserProvider;
+import com.wikia.qdoc.services.qdoc.flow.domain.QDocNumberGeneratorQDocumentTypeDecoratorPolicy;
+import com.wikia.qdoc.services.qdoc.flow.domain.SystemConfig;
 
 public class QDocNumberGeneratorPolicyProvider {
 

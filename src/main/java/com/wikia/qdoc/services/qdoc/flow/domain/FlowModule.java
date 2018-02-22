@@ -1,4 +1,4 @@
-package com.wikia.qdoc.services.qdoc.flow;
+package com.wikia.qdoc.services.qdoc.flow.domain;
 
 public class FlowModule {
 

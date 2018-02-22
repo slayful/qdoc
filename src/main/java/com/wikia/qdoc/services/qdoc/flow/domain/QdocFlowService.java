@@ -1,7 +1,9 @@
-package com.wikia.qdoc.services.qdoc.flow;
+package com.wikia.qdoc.services.qdoc.flow.domain;
 
-import com.wikia.qdoc.services.qdoc.flow.qdocnumber.QDocNumber;
-import com.wikia.qdoc.services.qdoc.flow.qdocnumber.QDocNumberGeneratorPolicy;
+import com.wikia.qdoc.services.qdoc.flow.domain.ports.CurrentUserProvider;
+import com.wikia.qdoc.services.qdoc.flow.domain.ports.QDocRepo;
+import com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumber;
+import com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumberGeneratorPolicy;
 import com.wikia.qdoc.shared.DepartmentId;
 import com.wikia.qdoc.shared.QManagerId;
 import com.wikia.qdoc.shared.QdocId;

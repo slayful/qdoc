@@ -1,6 +1,6 @@
-package com.wikia.qdoc.services.qdoc.flow;
+package com.wikia.qdoc.services.qdoc.flow.domain;
 
-import com.wikia.qdoc.services.qdoc.flow.qdocnumber.QDocNumber;
+import com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumber;
 import com.wikia.qdoc.shared.QManagerId;
 
 import java.time.LocalDateTime;

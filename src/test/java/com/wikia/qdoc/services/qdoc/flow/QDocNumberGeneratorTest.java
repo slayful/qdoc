@@ -5,7 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.wikia.qdoc.services.qdoc.flow.qdocnumber.QDocNumberGeneratorPolicyProvider;
+import com.wikia.qdoc.services.qdoc.flow.domain.ports.CurrentUserProvider;
+import com.wikia.qdoc.services.qdoc.flow.domain.SystemConfig;
+import com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumberGeneratorPolicyProvider;
 
 import org.junit.Before;
 import org.junit.Test;

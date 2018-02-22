@@ -1,4 +1,4 @@
-package com.wikia.qdoc.services.qdoc.flow.qdocnumber;
+package com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber;
 
 public class QDocNumber {
 
