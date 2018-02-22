@@ -1,24 +1,18 @@
 package com.wikia.qdoc.services.qdoc.flow.domain.transition.checkers;
 
-import com.wikia.qdoc.shared.QManagerId;
+import com.wikia.qdoc.services.qdoc.flow.domain.QDocState;
+import com.wikia.qdoc.services.qdoc.flow.domain.QDocument;
 
 import java.util.Optional;
 
 public class HasAuthor implements QdocChecker {
 
-  private final Optional<String> violation;
-
-  public HasAuthor(QManagerId author) {
-    if (author != null) {
-      this.violation = Optional.empty();
-    } else {
-      this.violation = Optional.of("Document must have an author");
-    }
-  }
-
   @Override
-  public Optional<String> violation() {
-    return violation;
+  public Optional<String> violation(QDocument.QDocData data) {
+    if (data.hasAuthor()) {
+      return Optional.empty();
+    }
+    return Optional.of("Author is required");
   }
 
 }

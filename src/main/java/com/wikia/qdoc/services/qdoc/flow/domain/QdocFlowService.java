@@ -4,6 +4,7 @@ import com.wikia.qdoc.services.qdoc.flow.domain.ports.CurrentUserProvider;
 import com.wikia.qdoc.services.qdoc.flow.domain.ports.QDocRepo;
 import com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumber;
 import com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber.QDocNumberGeneratorPolicy;
+import com.wikia.qdoc.services.qdoc.flow.domain.transition.checkers.QDocTransitionPolicyProvider;
 import com.wikia.qdoc.shared.DepartmentId;
 import com.wikia.qdoc.shared.QManagerId;
 import com.wikia.qdoc.shared.QdocId;
@@ -14,34 +15,41 @@ import java.util.Set;
 public class QdocFlowService {
 
   private final CurrentUserProvider currentUserProvider;
-  private final QDocNumberGeneratorPolicy numberGenerator;
+  private final QDocNumberGeneratorPolicy numberGeneratorPolicy;
+  private final QDocTransitionPolicyProvider transitionProvider;
   private final QDocRepo qDocRepo;
 
   public QdocFlowService(
       CurrentUserProvider currentUserProvider,
-      QDocNumberGeneratorPolicy numberGenerator,
+      QDocNumberGeneratorPolicy numberGeneratorPolicy,
+      QDocTransitionPolicyProvider transitionProvider,
       QDocRepo qDocRepo
   ) {
     this.currentUserProvider = currentUserProvider;
-    this.numberGenerator = numberGenerator;
+    this.numberGeneratorPolicy = numberGeneratorPolicy;
+    this.transitionProvider = transitionProvider;
     this.qDocRepo = qDocRepo;
   }
 
   void create(String qdocType, QdocId qdocId) {
     QManagerId author = currentUserProvider.getQManagerId();
     LocalDateTime createdAt = LocalDateTime.now();
-    QDocNumber documentNr = numberGenerator.generate(createdAt);
+    QDocNumber documentNr = numberGeneratorPolicy.generate(createdAt);
 
     QDocument qDocument = new QDocument(
         author,
         createdAt,
-        documentNr
+        documentNr,
+        qdocType,
+        QDocState.DRAFT
     );
 
     qDocRepo.save(qDocument);
   }
 
-  void sendForVerification(QdocId qdocId, QManagerId verifier) throws IllegalStatusChange {
+  void sendForVerification(QdocId qdocId) throws IllegalStatusChange {
+    QDocument qDocument = qDocRepo.load(qdocId);
+    qDocument.verify(transitionProvider.provide(QDocState.VERIFIED));
   }
 
   void markAsVerified(QdocId qdocId) throws IllegalStatusChange {
