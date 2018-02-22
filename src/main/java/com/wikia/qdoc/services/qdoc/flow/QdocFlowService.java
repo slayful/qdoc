@@ -28,11 +28,10 @@ public class QdocFlowService {
   void create(String qdocType, QdocId qdocId) {
     QManagerId author = currentUserProvider.getQManagerId();
     LocalDateTime createdAt = LocalDateTime.now();
-    QDocNumber documentNr = numberGenerator.generate(qdocType, createdAt);
+    QDocNumber documentNr = numberGenerator.generate(createdAt);
 
     QDocument qDocument = new QDocument(
         author,
-        qdocType,
         createdAt,
         documentNr
     );

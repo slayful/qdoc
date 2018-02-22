@@ -14,8 +14,8 @@ public class QDocNumberGeneratorDemoDecoratorPolicy implements QDocNumberGenerat
   }
 
   @Override
-  public QDocNumber generate(String documentType, LocalDateTime createdAt) {
-    QDocNumber generate = policy.generate(documentType, createdAt);
+  public QDocNumber generate(LocalDateTime createdAt) {
+    QDocNumber generate = policy.generate(createdAt);
     if (demoVersion) {
       return generate.withPrefix("DEMO");
     }

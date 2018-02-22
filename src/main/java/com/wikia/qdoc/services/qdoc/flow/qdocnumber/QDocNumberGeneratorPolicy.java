@@ -4,5 +4,5 @@ import java.time.LocalDateTime;
 
 public interface QDocNumberGeneratorPolicy {
 
-  QDocNumber generate(String documentType, LocalDateTime createdAt);
+  QDocNumber generate(LocalDateTime createdAt);
 }

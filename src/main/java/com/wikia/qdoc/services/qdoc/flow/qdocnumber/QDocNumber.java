@@ -5,7 +5,7 @@ public class QDocNumber {
   private static final String SEPARATOR = "/";
   private final String value;
 
-  private QDocNumber(String value) {
+  QDocNumber(String value) {
     this.value = value;
   }
 
@@ -13,12 +13,12 @@ public class QDocNumber {
     return value;
   }
 
-  public QDocNumber withPrefix(String value) {
-    return new QDocNumber(SEPARATOR + value);
+  public QDocNumber withPrefix(String prefix) {
+    return new QDocNumber(prefix + SEPARATOR + value);
   }
 
-  public QDocNumber withSuffix(String value) {
-    return new QDocNumber(value + SEPARATOR);
+  public QDocNumber withSuffix(String suffix) {
+    return new QDocNumber(value + SEPARATOR + suffix);
   }
 
 }

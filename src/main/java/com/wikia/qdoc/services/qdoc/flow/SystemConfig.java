@@ -11,4 +11,8 @@ public class SystemConfig {
   public boolean isDemoVersion() {
     return isDemoVersion;
   }
+
+  public String getQDocumentType() {
+    return "ISO";
+  }
 }
