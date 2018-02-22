@@ -1,7 +1,5 @@
 package com.wikia.qdoc.services.qdoc.flow.domain.qdocnumber;
 
-import com.wikia.qdoc.services.qdoc.flow.domain.QDocNumberGeneratorPolicy;
-
 import java.time.LocalDateTime;
 
 public class QDocNumberGeneratorDemoDecoratorPolicy implements QDocNumberGeneratorPolicy {
