@@ -24,7 +24,7 @@ public class ChainValidationPolicy implements QDocTransitionPolicy {
         .map(Optional::get)
         .collect(Collectors.toList());
 
-    if (violations.isEmpty()) {
+    if (!violations.isEmpty()) {
       throw new InvalidTransition(violations);
     }
   }
